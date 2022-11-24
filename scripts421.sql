@@ -1,4 +1,4 @@
-alter table students add constraint age_minValue check (age > 11);
+alter table students add constraint age_min check (age > 11);
 
 alter table students add constraint name_unique unique (name);
 alter table students alter column name set not null;

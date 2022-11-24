@@ -1,5 +1,6 @@
 package ru.hogwarts.school.component;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import ru.hogwarts.school.entity.Avatar;
 import ru.hogwarts.school.entity.Faculty;
@@ -40,7 +41,7 @@ public class RecordMapper {
 
     public Student toEntity(StudentRecord studentRecord){
         Student student = new Student();
-        student.setName(studentRecord.getName());
+        student.setName(StringUtils.capitalize(studentRecord.getName()));
         student.setAge(studentRecord.getAge());
         if (studentRecord.getFaculty() != null) {
             student.setFaculty(toEntity(studentRecord.getFaculty()));
@@ -50,7 +51,7 @@ public class RecordMapper {
 
     public Faculty toEntity(FacultyRecord facultyRecord){
         Faculty faculty = new Faculty();
-        faculty.setName(facultyRecord.getName());
+        faculty.setName(StringUtils.capitalize(facultyRecord.getName()));
         faculty.setColor(facultyRecord.getColor());
         return faculty;
     }
