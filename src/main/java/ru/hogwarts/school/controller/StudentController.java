@@ -1,5 +1,6 @@
 package ru.hogwarts.school.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.record.FacultyRecord;
 import ru.hogwarts.school.record.StudentRecord;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 
 @RestController
@@ -71,5 +73,15 @@ public class StudentController {
     @GetMapping("/lastFiveStudents")
     public List<StudentRecord> lastFiveStudents(@RequestParam @Min(1) @Max(10) int count){
         return studentService.lastFiveStudents(count);
+    }
+
+    @GetMapping("/findStudentNamesWhichStartedWithA")
+    public Stream<String> findStudentNamesWhichStartedWithA(){
+        return studentService.findStudentNamesWhichStartedWithA();
+    }
+
+    @GetMapping("/findStudentAverageAge")
+    public double findStudentAverageAge(){
+        return studentService.findStudentAverageAge();
     }
 }
